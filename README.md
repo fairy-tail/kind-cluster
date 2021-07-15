@@ -1,20 +1,36 @@
 - Kind Documentation
-    - source: [官方文档](https://kind.sigs.k8s.io/)
-    - author: [[kind]]
-    - 快速开始
-        - 如何安装 kind 命令行工具?
-            - 通过 **arkade** 安装, `arkade get kind`
-            - 通过 **brew** 安装, `brew install kind`
-            - 通过 **golang** 安装， `GO111MODULE="on" go get sigs.k8s.io/kind@v0.10.0`
-        - 如何快速创建一个集群？
-            - `kind create cluster`
-        - 如何创建一个指定版本的集群?
-            - `kind create cluster --image=...`
-        - 如何查看集群?
-            - `kind get clusters`
-        - 如何删除集群?
-            - `kind delete cluster`
-        - 如何加载镜像到集群中?
-            - `kind load docker-image my-custom-image`
-        - 如何查看集群中的镜像?
-            - `docker exec -it kind-control-plane crictl images`
+
+  - source: [官方文档](https://kind.sigs.k8s.io/)
+  - author: [[kind]]
+  - 快速开始
+
+    - 如何安装 kind 命令行工具?
+      - 通过 **arkade** 安装, `arkade get kind`
+      - 通过 **brew** 安装, `brew install kind`
+      - 通过 **golang** 安装， `GO111MODULE="on" go get sigs.k8s.io/kind@v0.10.0`
+    - 如何快速创建一个集群？
+      - `kind create cluster`
+    - 如何创建一个指定版本的集群?
+      - `kind create cluster --image=...`
+    - 如何查看集群?
+      - `kind get clusters`
+    - 如何删除集群?
+      - `kind delete cluster`
+    - 如何加载镜像到集群中?
+      - `kind load docker-image my-custom-image`
+    - 如何查看集群中的镜像?
+      - `docker exec -it kind-control-plane crictl images`
+
+  - 部署
+    - 创建集群
+      - `kind create cluster --config kind-multi-node-and-ingress-config.yaml`
+    - 安装 Ambassador
+      - 安装 crds
+        - `kubectl apply -f https://github.com/datawire/ambassador-operator/releases/latest/download/ambassador-operator-crds.yaml`
+      - 安装 Ambassador
+        - `kubectl apply -n ambassador -f https://github.com/datawire/ambassador-operator/releases/latest/download/ambassador-operator-kind.yaml`
+    - 部署 demo 应用
+      - 部署
+        - `kubectl apply -f http-echo-example.yaml`
+      - 测试
+        - `curl localhost/foo`
