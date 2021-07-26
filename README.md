@@ -29,6 +29,9 @@
         - `kubectl apply -f https://github.com/datawire/ambassador-operator/releases/latest/download/ambassador-operator-crds.yaml`
       - 安装 Ambassador
         - `kubectl apply -n ambassador -f https://github.com/datawire/ambassador-operator/releases/latest/download/ambassador-operator-kind.yaml`
+    - 安装 nginx ingress
+      - 安装组件,需检查 pod 是否正常部署
+        - `kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml`
     - 部署 demo 应用
       - 部署
         - `kubectl apply -f http-echo-example.yaml`
