@@ -61,6 +61,7 @@ metadata:
   name: example-ingress
   namespace: demo
 spec:
+  ingressClassName: nginx
   rules:
     - http:
         paths:
